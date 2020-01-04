@@ -8,28 +8,28 @@ Details
 {% block content %}
  <!-- Main Section -->
     <div class="container">
-      <h2 class="heading font-weight-light text-center">Card Heading</h2>
+      <h2 class="heading font-weight-light text-center">{{ contacts.name }}</h2>
       <hr />
     </div>
     <div class="container main-part">
       <!-- Card for details -->
       <div class="card my-2 boy-card w-25 mx-auto">
-        <img src="https://placeimg.com/230/130/people" class="img-fluid" />
+        <img src="{{ contacts.image.url }}" class="img-fluid" />
         <div class="card-header">
           <a href="#" class="text-white header-link"
-            ><i class="fas fa-mars mr-2"></i> John Wood</a
+            ><i class="fas fa-mars mr-2"></i>{{ contacts.name }}</a
           >
         </div>
         <div class="card-body pb-0">
           <p>
             <i class="fas fa-at mr-2"></i>
-            <a href="mailto:johonwood@gmail.com">johonwood@gmail.com</a>
+            <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
           </p>
           <p>
             <i class="fas fa-phone mr-2"></i>
-            <a href="tel:9001010100">9001010100</a>
+            <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a>
           </p>
-          <p><i class="fas fa-info-circle mr-2"></i> Friend</p>
+          <p><i class="fas fa-info-circle mr-2"></i> {{ contacts.info }}</p>
         </div>
       </div>
     </div>
