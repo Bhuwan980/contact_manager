@@ -20,11 +20,12 @@ nav {
   padding-bottom: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
+
 .logo {
   font-size: 30px;
   letter-spacing: 1px;
   /* background: var(--logo); */
-  color: white;
+  color: rgb(93, 187, 117);
   padding: 2px 12px;
   border-radius: 8px;
   font-family: cursive;

@@ -1,7 +1,8 @@
-from django.shortcuts import render,get_object_or_404,redirect
+from django.shortcuts import render,redirect
 from .models import Contact
 from django.views.generic import ListView,DetailView
 from django.db.models import Q
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
 
 # Create your views here.
 # def index(request):
@@ -35,3 +36,22 @@ def search(request):
 		return render(request,'search.html',context)
 	else:
 		return redirect('index')
+
+class ContactCreateView(CreateView):
+	model = Contact
+	template_name = 'create.html'
+	fields = ['name','phone','info','email','image','gender']
+	success_url = '/'
+class ContactUpdateView(UpdateView):
+	model = Contact
+	template_name='update.html'
+	fields = ['name','phone','info','email','image','gender']
+	
+	def form_valid(self,form):
+		instance = form.save()
+		return redirect ('detail',instance.pk)
+
+class ContactDeleteView(DeleteView):
+	model = Contact
+	template_name='delete.html'
+	success_url = '/'

@@ -6,7 +6,7 @@ class Contact(models.Model):
 	phone = models.IntegerField()
 	info = models.TextField(max_length = 200, blank=True)
 	email = models.EmailField(blank=True)
-	date = models.DateTimeField()
+	date = models.DateTimeField(auto_now_add=True)
 	image = models.ImageField(upload_to="images/",blank=True)
 	gender = models.TextField(max_length = 40,choices=(('male','Male'),('female','Female')))
 

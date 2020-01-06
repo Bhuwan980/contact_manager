@@ -37,13 +37,15 @@
       <a class="logo" href="{% url 'index' %}">
         <i class="fas fa-user-circle"></i>&nbsp;Contacts
       </a>
+{% comment %} contact add functionality {% endcomment %}
+     <a href="{% url 'create' %}" class="btn-outline-dark">+Add Contact</a>
+      
       <form class="form-inline my-2" action="{% url 'search' %}" method='GET'>
         <input
           class="form-control"
-          type="text"
+          type="search"
           placeholder="Find contacts..."
-          name = search_text
-          
+          name = search_text          
         />
         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
       </form>

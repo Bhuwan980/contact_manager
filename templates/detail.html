@@ -32,7 +32,11 @@ Details
           <p><i class="fas fa-info-circle mr-2"></i> {{ contacts.info }}</p>
         </div>
       </div>
-    </div>
+
+       </div>
+      <br>     
+      <center> <a href="{% url 'update' contacts.id %}">Update</a>|| <a href="{% url 'delete' contacts.id %}">Delete</a> </center>
+   
     <!-- Main Section ends-->
 
    {% endblock %}
