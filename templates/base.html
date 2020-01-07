@@ -37,9 +37,16 @@
       <a class="logo" href="{% url 'index' %}">
         <i class="fas fa-user-circle"></i>&nbsp;Contacts
       </a>
+
 {% comment %} contact add functionality {% endcomment %}
-     <a href="{% url 'create' %}" class="btn-outline-dark">+Add Contact</a>
-      
+     <p>
+     <a href="{% url 'create' %}" class="btn-outline-dark">+Add Contact</a> | 
+     {% if user.is_authenticated %}
+       <a class = 'btn-outline-dark' href="{% url 'logout' %}">Logout</a>
+     {% else %}
+       <a class = 'btn-outline-dark' href="{% url 'login' %}">Login</a>
+     {% endif %}   
+      </p>
       <form class="form-inline my-2" action="{% url 'search' %}" method='GET'>
         <input
           class="form-control"
@@ -58,7 +65,8 @@
    {% endblock %}
     <!-- footer -->
     <footer class="mt-4 p-2">
-      <p class="text-center p-1 m-0">&copy; BHUWAN {% now 'Y' %}</p>
+      <p class="text-center p-1 m-0">&copy; BHUWAN {% now 'Y' %}  </p>
+
     </footer>
     <!-- footer ends -->
   </body>

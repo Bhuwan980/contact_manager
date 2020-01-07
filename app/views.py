@@ -3,7 +3,9 @@ from .models import Contact
 from django.views.generic import ListView,DetailView
 from django.db.models import Q
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
 # Create your views here.
 # def index(request):
 # 	contacts = Contact.objects.all
@@ -55,3 +57,39 @@ class ContactDeleteView(DeleteView):
 	model = Contact
 	template_name='delete.html'
 	success_url = '/'
+
+def login_user(request):
+	if request.method == 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request,username=username,password=password)
+		if user is not None:
+			messages.success(request, ('you successfully logged in!'))
+			login(request, user)
+			return redirect('index')
+		else:
+			messages.success(request, ("User doesn't exist!"))
+			return redirect('login')
+	else:
+		return render(request, 'login.html',{})
+
+	
+def logout_user(request):
+	logout(request)
+	messages.success(request, ("Logged out!"))
+	return redirect('index')
+
+def register_user(request):
+	if request.method == 'POST':
+		if request.POST['password']==request.POST['password1']:
+			try:
+				user = User.objects.get(username=request.POST['username'])
+				messages.success(request,('username is already taken!'))
+				return redirect('register')
+			except User.DoesNotExist:
+				user = User.objects.create_user(request,request.POST['username'],request.POST['password'])
+				login(request,user)
+				messages.success(request,('successfully registered!'))
+				return redirect('index')
+	else:
+		return render(request,'register.html')
